@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "webpack-dev-server --watch --progress --env=dev",
-    "serve:build": "webpack-dev-server --env=prod",
-    "build": "webpack --env=prod"
+    "serve:prod": "webpack-dev-server --env=prod",
+    "build:dev": "webpack",
+    "build:prod": "webpack --env=prod"
   },
   "author": "",
   "license": "AGPLv3",

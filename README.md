@@ -17,7 +17,7 @@ OPENPAAS_URL=https://dev.open-paas.org npm run serve
 The development server can also be used to serve minified SPA to check that everything is OK:
 
 ```sh
-OPENPAAS_URL=https://dev.open-paas.org npm run serve:build
+OPENPAAS_URL=https://dev.open-paas.org npm run serve:prod
 ```
 
 ## Build
@@ -25,5 +25,5 @@ OPENPAAS_URL=https://dev.open-paas.org npm run serve:build
 Generates minified SPA in the `./dist` folder:
 
 ```sh
-npm run build
+npm run build:prod
 ```
