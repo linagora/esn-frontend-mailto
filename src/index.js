@@ -3,9 +3,7 @@ require('angularjs-dragula/dist/angularjs-dragula.js');
 require('jmap-draft-client/dist/jmap-draft-client.js');
 require('ui-select/dist/select.js');
 
-require('esn-frontend-common-libs/src/index.js');
-
-require('./require-angular-injections.js');
+require('esn-frontend-common-libs/src/frontend/vendor-libs');
 
 // mock everything we do not need
 require('./app/mailto.mocks.js');
