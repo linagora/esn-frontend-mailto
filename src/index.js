@@ -1,3 +1,4 @@
+require('esn-frontend-inbox/src/esn.inbox.libs/app/app.module.js');
 require('sanitize-html/dist/sanitize-html.js');
 require('angularjs-dragula/dist/angularjs-dragula.js');
 require('jmap-draft-client/dist/jmap-draft-client.js');
@@ -9,9 +10,8 @@ require('esn-frontend-common-libs/src/frontend/vendor-libs');
 require('./app/mailto.mocks.js');
 
 // then require everything we need...
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/constants.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/controllers.js');
+
+
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/directives/main.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/config/config.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/new-composer/new-composer.js');
@@ -23,7 +23,6 @@ require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/jmap-clie
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/generate-jwt-token/generate-jwt-token.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/custom-role-mailbox/custom-role-mailbox.service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/identities/inbox-identities.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/common/inbox-restangular.service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/identities/inbox-users-identities-api-client.service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailboxes/mailboxes-service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailboxes/shared-mailboxes.js');
