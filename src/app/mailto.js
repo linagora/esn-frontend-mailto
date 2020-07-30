@@ -51,6 +51,7 @@ angular.module('linagora.esn.unifiedinbox.mailto', [
   'esn.http',
   'esn.promise',
   'esn.chips',
+  'openpaas-logo',
 
   'ngAnimate',
   'material.core',
@@ -105,6 +106,11 @@ require('esn-frontend-common-libs/src/frontend/js/modules/http');
 require('esn-frontend-common-libs/src/frontend/js/modules/promise/promise.module');
 require('esn-frontend-common-libs/src/frontend/js/modules/chips/chips.module');
 
-require('./mailto.config.js');
 require('./mailto.constants.js');
+require('./routes');
 require('./mailto.run.js');
+
+require('./services/mail-status/mail-status.service');
+require('./services/mail-status/mail-status.constants');
+require('./services/mail-composer/mail-composer.service');
+require('./components/mailto-page/mailto-page.component');

@@ -1,5 +1,23 @@
 @import "~esn-frontend-inbox/src/all.less";
+@import "./components/mailto-page/mailto-page.less";
 
 .box-overlay-open {
   margin: 0;
+}
+
+body[ng-app='linagora.esn.unifiedinbox.mailto'] {
+  padding-bottom: 0;
+  overflow-x: hidden;
+
+  #header {
+    box-shadow: 0 1px 4px @subHeaderShadow;
+  }
+
+  #wrap {
+    height: 100%;
+
+    .main-content {
+      height: 100%;
+    }
+  }
 }

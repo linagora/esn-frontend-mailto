@@ -1,0 +1,26 @@
+<svg viewBox="0 0 748.00004 717.89011" height="189.94176mm" width="197.90834mm" data-name="Layer 1" id="fd577a60-d552-4fe8-bffb-d9cccd3352c0">
+	<defs id="defs325">
+		<linearGradient gradientTransform="matrix(1.0246575,0,0,1,-4.94e-6,-19.10991)" gradientUnits="userSpaceOnUse" y2="286" x2="365" y1="605" x1="365" id="aeee3e51-5d06-43ae-b234-e7a12d326f50">
+			<stop id="stop311" stop-opacity="0.12" offset="0" />
+			<stop id="stop313" stop-opacity="0.09" offset="0.55135" />
+			<stop id="stop315" stop-opacity="0.02" offset="1" />
+		</linearGradient>
+		<linearGradient gradientUnits="userSpaceOnUse" gradientTransform="matrix(-0.64881,0.76095,0.76095,0.64881,817.40491,-656.85567)" y2="-102.40539" x2="1117.619" y1="-43.05793" x1="1117.619" id="acb63a3b-00bb-44a8-8877-bb0607d49a63">
+			<stop id="stop318" stop-opacity="0.25" stop-color="gray" offset="0" />
+			<stop id="stop320" stop-opacity="0.12" stop-color="gray" offset="0.53514" />
+			<stop id="stop322" stop-opacity="0.1" stop-color="gray" offset="1" />
+		</linearGradient>
+	</defs>
+	<title>
+		Failed to send mail
+	</title>
+	<rect style="fill-opacity:1" x="1.650589e-08" fill="#6561f6" height="319" width="748" y="266.89008" />
+	<rect x="1.650589e-08" fill="url(#aeee3e51-5d06-43ae-b234-e7a12d326f50)" height="319" width="748" y="266.89008" />
+	<polygon class="icon-primary-color-fill" transform="translate(0,-1.10991)" fill="#6c63ff" points="748,268 748,719 0,719 0,268 374,494" />
+	<g transform="rotate(44.381095,154.08867,329.14601)">
+		<g transform="rotate(45.21248,412.73268,-54.950421)">
+			<rect style="fill:#ff6584;fill-opacity:1;stroke-width:1.7;stroke-miterlimit:4;stroke-dasharray:none" width="690.46088" height="105.40814" x="-95.735374" y="433.94769" transform="rotate(-44.381095)" />
+			<rect y="-303.33618" x="140.83672" height="105.40814" width="690.46088" style="fill:#ff6584;fill-opacity:1;stroke-width:1.7;stroke-miterlimit:4;stroke-dasharray:none" transform="rotate(45.752853)" />
+		</g>
+	</g>
+</svg>
