@@ -1,0 +1,22 @@
+div.container.sending(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.TRANSITION")
+  div.text-center(openpaas-logo-spinner, spinner-start-active='1', spinner-size='1.5', ng-class="{ zoomOut: $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.TRANSITION }")
+  p.status-message
+    span {{ 'Your message is being sent' | translate }}
+    span.dots
+      span .
+      span .
+      span .
+
+div.is-desktop.container.sent(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENT")
+  .icon-container.zoomIn(ng-bind-html="$ctrl.mailSentIcon")
+  p.status-message {{ 'Your message has been sent successfully.' | translate }}
+  div.actions
+    button.btn.btn-primary.waves-effect(ng-click="$ctrl.onSendAnother()") {{ 'Send another' | translate }}
+    button.btn.btn-link.waves-effect(ng-click="$ctrl.onCloseWindow") {{ 'Close window' | translate }}
+
+div.is-desktop.container.sent(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.FAILED")
+  .icon-container.zoomIn(ng-bind-html="$ctrl.mailFailedIcon")
+  p.status-message {{ 'Sorry, we could not send your message.' | translate }}
+  div.actions
+    button.btn.btn-primary.waves-effect(ng-click="$ctrl.onSendAnother()") {{ 'Reopen composer' | translate }}
+    button.btn.btn-link.waves-effect(ng-click="$ctrl.onCloseWindow") {{ 'Close window' | translate }}
