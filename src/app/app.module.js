@@ -106,9 +106,10 @@ require('esn-frontend-common-libs/src/frontend/js/modules/http');
 require('esn-frontend-common-libs/src/frontend/js/modules/promise/promise.module');
 require('esn-frontend-common-libs/src/frontend/js/modules/chips/chips.module');
 
-require('./mailto.constants.js');
+require('./app.config');
+require('./app.constants');
 require('./routes');
-require('./mailto.run.js');
+require('./app.run');
 
 require('./services/mail-status/mail-status.service');
 require('./services/mail-status/mail-status.constants');
