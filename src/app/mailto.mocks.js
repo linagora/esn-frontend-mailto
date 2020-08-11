@@ -25,5 +25,3 @@ angular.module('linagora.esn.unifiedinbox', [])
 angular.module('linagora.esn.graceperiod', [])
   .service('gracePeriodLiveNotificationService', noop)
   .service('gracePeriodService', noop);
-
-angular.module('ngCookies', []);
