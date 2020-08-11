@@ -1,4 +1,3 @@
-require('esn-frontend-inbox/src/esn.inbox.libs/app/app.module.js');
 require('sanitize-html/dist/sanitize-html.js');
 require('angularjs-dragula/dist/angularjs-dragula.js');
 require('jmap-draft-client/dist/jmap-draft-client.js');
