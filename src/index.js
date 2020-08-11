@@ -6,7 +6,7 @@ require('ui-select/dist/select.js');
 require('esn-frontend-common-libs/src/frontend/vendor-libs');
 
 // mock everything we do not need
-require('./app/mailto.mocks.js');
+require('./app/app.mocks.js');
 
 // then require everything we need...
 
@@ -63,5 +63,5 @@ require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/quota-banner/quota-banner.component.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/quota-banner/quota-banner.controller.js');
 
-require('./app/mailto.js');
+require('./app/app.module.js');
 require('./app/all.less');
