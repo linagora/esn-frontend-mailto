@@ -17,8 +17,6 @@ angular
     };
 
     function openComposer() {
-      console.log('$location.search().uri', $location.search().uri);
-
       newComposerService.open(inboxMailtoParser($location.search().uri), {
         closeable: false,
         allowedStates: [],
