@@ -1,5 +1,5 @@
 doctype html
-html
+html.full-height
   head
     meta(charset='utf8')
     base(href=base)
@@ -7,6 +7,10 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="theme-color", content="#0C7CD5")
     script(src="/socket.io/socket.io.js")
+    style(type='text/css').
+      html.full-height, html.full-height body, html.full-height body > #wrap {
+        height: 100%;
+      }
 
   body(ng-app="linagora.esn.unifiedinbox.mailto" ng-controller="sessionInitESNController")
     #wrap(ng-include='session.template')
