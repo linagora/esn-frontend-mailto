@@ -67,8 +67,6 @@ angular.module('linagora.esn.unifiedinbox.mailto', [
 /*
   Careful: some modules are mocked in mailto.mocks.js
 */
-require('esn-frontend-inbox/src/esn.inbox.libs/app/app.module.js');
-
 require('esn-frontend-common-libs/src/frontend/js/modules/touchscreen-detector');
 require('esn-frontend-common-libs/src/frontend/js/modules/textarea-autosize');
 require('esn-frontend-common-libs/src/frontend/js/modules/esn.waves');

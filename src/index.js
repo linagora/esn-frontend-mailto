@@ -9,33 +9,15 @@ require('esn-frontend-common-libs/src/frontend/vendor-libs');
 require('./app/app.mocks.js');
 
 // then require everything we need...
-
-
+require('esn-frontend-inbox/src/esn.inbox.libs/app/app.module.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/directives/main.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/config/config.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/new-composer/new-composer.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/jmap-helper/jmap-helper.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/email-body/email-body.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/with-jmap-client/with-jmap-client.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/jmap-client-wrapper/jmap-client-wrapper.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/jmap-client-provider/jmap-client-provider.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/generate-jwt-token/generate-jwt-token.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/custom-role-mailbox/custom-role-mailbox.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/identities/inbox-identities.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/identities/inbox-users-identities-api-client.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailboxes/mailboxes-service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailboxes/shared-mailboxes.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailboxes/shared-mailboxes.constants.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailboxes/special-mailboxes.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailto-parser/mailto-parser.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/user-quota/user-quota-service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/user-quota/user-quota-service.constants.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/hook/email-sending-hook.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/hook/email-composing-hook.service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/attachment-upload/inbox-attachment-upload.service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/attachment-provider-registry/attachment-provider-registry.service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/attachment-jmap/attachment-jmap.service.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/attachment-jmap/attachment-jmap.constants.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/attachment-jmap/attachment-jmap.run.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/request-receipts/request-receipts.constants.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/request-receipts/request-receipts-service.js');
