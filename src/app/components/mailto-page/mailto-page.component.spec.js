@@ -13,7 +13,9 @@ describe('The mailtoPage component', function() {
       openComposer: sinon.stub()
     };
 
-    angular.mock.module('linagora.esn.unifiedinbox.mailto', function($provide) {
+    angular.mock.module('linagora.esn.unifiedinbox.mailto');
+
+    angular.mock.module(function($provide) {
       $provide.value('mailtoMailStatus', mailtoMailStatusMock);
       $provide.value('mailtoMailComposer', mailtoMailComposerMock);
       $provide.value('translateFilter', text => text);
