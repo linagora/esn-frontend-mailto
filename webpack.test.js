@@ -3,9 +3,7 @@ const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const commons = require('./webpack.commons.js');
 
-const momentPath = path.resolve(__dirname, 'node_modules', 'moment', 'moment.js');
 const chaiPath = path.resolve(__dirname, 'node_modules', 'chai/chai.js');
-const lodashPath = path.resolve(__dirname, 'node_modules', 'lodash', 'dist', 'lodash.js');
 const i18nLoaderMockPath = path.resolve(__dirname, 'test', 'config', 'mocks', 'i18n-loader.js');
 
 module.exports = merge(commons, {
@@ -22,9 +20,7 @@ module.exports = merge(commons, {
       i18nLoaderMockPath
     ),
     new webpack.ProvidePlugin({
-      chai: chaiPath,
-      _: lodashPath,
-      moment: momentPath
+      chai: chaiPath
     })
   ],
   module: {

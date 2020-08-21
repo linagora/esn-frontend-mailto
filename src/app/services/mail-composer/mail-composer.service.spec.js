@@ -24,7 +24,9 @@ describe('The mailtoMailComposer service', function() {
 
     fakeUri = 'fakeUri';
 
-    angular.mock.module('linagora.esn.unifiedinbox.mailto', function($provide) {
+    angular.mock.module('linagora.esn.unifiedinbox.mailto');
+    
+    angular.mock.module(function($provide) {
       $provide.factory('inboxMailtoParser', function() { return inboxMailtoParserMock; });
       $provide.factory('BoxOverlayStateManager', function() { return BoxOverlayStateManagerMock; });
       $provide.value('newComposerService', newComposerServiceMock);
