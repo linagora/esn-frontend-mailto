@@ -1,6 +1,5 @@
 require('./mail-status.constants');
 
-// TODO: Write tests for this (https://github.com/OpenPaaS-Suite/esn-frontend-mailto/issues/2)
 angular
   .module('linagora.esn.unifiedinbox.mailto')
   .service('mailtoMailStatus', function($rootScope, $log, MAILTO_MAIL_STATUSES, MAILTO_MAIL_STATUS_EVENTS) {

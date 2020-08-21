@@ -4,7 +4,6 @@ require('../../services/mail-status/mail-status.constants');
 require('../../services/mail-status/mail-status.service');
 require('../../services/mail-composer/mail-composer.service');
 
-// TODO: Write tests for this (https://github.com/OpenPaaS-Suite/esn-frontend-mailto/issues/2)
 angular
   .module('linagora.esn.unifiedinbox.mailto')
   .controller('MailtoPageController', function(

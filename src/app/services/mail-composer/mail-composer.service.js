@@ -1,7 +1,6 @@
 require('../mail-status/mail-status.constants');
 require('../mail-status/mail-status.service');
 
-// TODO: Write tests for this (https://github.com/OpenPaaS-Suite/esn-frontend-mailto/issues/2)
 angular
   .module('linagora.esn.unifiedinbox.mailto')
   .service('mailtoMailComposer', function(
@@ -17,7 +16,9 @@ angular
     };
 
     function openComposer() {
-      newComposerService.open(inboxMailtoParser($location.search().uri), {
+      const messageFromSearchParams = inboxMailtoParser($location.search().uri);
+
+      newComposerService.open(messageFromSearchParams, {
         closeable: false,
         allowedStates: [],
         initialState: BoxOverlayStateManager.STATES.FULL_SCREEN,
