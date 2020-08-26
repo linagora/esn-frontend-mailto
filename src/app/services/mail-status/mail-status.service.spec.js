@@ -54,6 +54,17 @@ describe('The mailtoMailStatus service', function() {
       expect($rootScope.$broadcast).to.have.been.calledWith(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.SENDING);
     });
 
+    it('should update the current status if the incoming new status is valid and broadcast an event with the updated status and the provided options', function() {
+      const options = { a: 'b' };
+
+      mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.SENDING, options);
+
+      const currentStatus = mailtoMailStatus.getStatus();
+
+      expect(currentStatus).to.equal(MAILTO_MAIL_STATUSES.SENDING);
+      expect($rootScope.$broadcast).to.have.been.calledWith(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.SENDING, options);
+    });
+
     it('should neither update the current status nor broadcast an event if the incoming new status is invalid, but log an error', function() {
       const previousStatus = mailtoMailStatus.getStatus();
       const newStatus = MAILTO_MAIL_STATUSES.SENDING + 'some_invalid_string_123abc!@#$$^(*)21';

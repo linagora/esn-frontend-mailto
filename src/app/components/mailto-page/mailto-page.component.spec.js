@@ -19,12 +19,14 @@ describe('The mailtoPage component', function() {
       $provide.value('mailtoMailStatus', mailtoMailStatusMock);
       $provide.value('mailtoMailComposer', mailtoMailComposerMock);
       $provide.value('translateFilter', text => text);
+      $provide.value('esnI18nService', { translate: text => ({ toString: () => text }) });
       $provide.factory('openpaasLogoSpinner', () => ({}));
     });
 
-    angular.mock.inject(function(_$rootScope_, _$compile_, _$timeout_, _$window_, _$q_, _MAILTO_MAIL_STATUSES_, _MAILTO_MAIL_STATUS_EVENTS_) {
+    angular.mock.inject(function(_$rootScope_, _$compile_, _$controller_, _$timeout_, _$window_, _$q_, _MAILTO_MAIL_STATUSES_, _MAILTO_MAIL_STATUS_EVENTS_) {
       $rootScope = _$rootScope_;
       $compile = _$compile_;
+      $controller = _$controller_;
       $timeout = _$timeout_;
       $window = _$window_;
       MAILTO_MAIL_STATUSES = _MAILTO_MAIL_STATUSES_;
@@ -148,6 +150,81 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
       const closeWindowButton = element.find('.sent button.btn.btn-link');
+
+      closeWindowButton.click();
+
+      expect($window.close).to.have.been.called;
+    });
+  });
+
+  describe('When mail is about to be discarded', function() {
+    it('should show delete draft icon when the draft is about to be discarded', function() {
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDING;
+
+      const element = initComponent();
+
+      expect(element.find('.draft .icon-container svg title').text()).to.contain('Delete draft');
+    });
+
+    it('should allow reopening the draft when clicking on the \'Reopen draft\' button', function() {
+      const reopenDraft = sinon.stub();
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.INITIAL;
+
+      const element = initComponent();
+
+      $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });
+      $rootScope.$digest();
+
+      const reopenDraftButton = element.find('.draft button.btn.btn-primary');
+
+      reopenDraftButton.click();
+
+      expect(element.find('.draft button.btn.btn-primary').attr('title')).to.equal('');
+      expect(reopenDraft).to.have.been.called;
+    });
+
+    it('should close the window when clicking on the \'Close window\' button', function() {
+      $window.close = sinon.stub();
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDING;
+
+      const element = initComponent();
+      const closeWindowButton = element.find('.draft button.btn.btn-link');
+
+      closeWindowButton.click();
+
+      expect($window.close).to.have.been.called;
+    });
+  });
+
+  describe('When mail has been discarded', function() {
+    it('should show delete draft icon when the drat has been discarded', function() {
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDED;
+
+      const element = initComponent();
+
+      expect(element.find('.draft .icon-container svg title').text()).to.contain('Delete draft');
+    });
+
+    it('should disable the \'Reopen draft\' button and update its title', function() {
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDING;
+
+      const element = initComponent();
+
+      $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.DISCARDED);
+      $rootScope.$digest();
+
+      const reopenDraftButton = element.find('.draft button.btn.btn-primary');
+
+      expect(reopenDraftButton.attr('title')).to.equal('The draft has already been discarded');
+      expect(reopenDraftButton.attr('disabled')).to.exist;
+    });
+
+    it('should close the window when clicking on the \'Close window\' button', function() {
+      $window.close = sinon.stub();
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDED;
+
+      const element = initComponent();
+      const closeWindowButton = element.find('.draft button.btn.btn-link');
 
       closeWindowButton.click();
 

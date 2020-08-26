@@ -22,3 +22,15 @@ div.container.sent(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.FAILED")
   div.actions
     button.btn.btn-primary.waves-effect(ng-click="$ctrl.sendAnother()") {{ 'Reopen composer' | translate }}
     button.btn.btn-link.waves-effect(ng-click="$ctrl.closeWindow()") {{ 'Close window' | translate }}
+
+div.container.draft(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDED")
+  .icon-container.zoomIn
+    include ../../../../assets/undraw_DeleteDraft.svg
+  p.status-message {{ 'Your draft has been discarded. The window will be closed in a few seconds...' | translate }}
+  div.actions
+    button.btn.btn-primary.waves-effect(
+      ng-click="$ctrl.reopenDraft()",
+      ng-disabled="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDED",
+      ng-attr-title="{{ $ctrl.reopenDraftButtonTitle }}"
+    ) {{ 'Reopen draft' | translate }}
+    button.btn.btn-link.waves-effect(ng-click="$ctrl.closeWindow()") {{ 'Close window' | translate }}

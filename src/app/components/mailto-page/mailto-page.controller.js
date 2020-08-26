@@ -8,6 +8,7 @@ angular
     $scope,
     $timeout,
     $window,
+    esnI18nService,
     mailtoMailComposer,
     mailtoMailStatus,
     MAILTO_MAIL_STATUS_EVENTS,
@@ -21,7 +22,7 @@ angular
       TRANSITION: 'transition',
     };
 
-    $scope.$on(MAILTO_MAIL_STATUS_EVENTS.UPDATED, (event, newStatus) => {
+    $scope.$on(MAILTO_MAIL_STATUS_EVENTS.UPDATED, (event, newStatus, options) => {
       if (newStatus === self.MAILTO_MAIL_STATUSES.SENT || newStatus === self.MAILTO_MAIL_STATUSES.FAILED) {
         self.status = self.MAILTO_MAIL_STATUSES.TRANSITION;
 
@@ -34,6 +35,17 @@ angular
       }
 
       self.status = newStatus;
+
+      if (newStatus === self.MAILTO_MAIL_STATUSES.DISCARDING) {
+        self.reopenDraft = options.reopenDraft;
+        self.reopenDraftButtonTitle = '';
+
+        return;
+      }
+
+      if (newStatus === self.MAILTO_MAIL_STATUSES.DISCARDED) {
+        self.reopenDraftButtonTitle = esnI18nService.translate('The draft has already been discarded').toString();
+      }
     });
 
     self.sendAnother = () => {

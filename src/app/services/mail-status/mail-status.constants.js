@@ -6,5 +6,7 @@ angular.module('linagora.esn.unifiedinbox.mailto')
     INITIAL: 'initial',
     SENDING: 'sending',
     SENT: 'sent',
-    FAILED: 'failed'
+    FAILED: 'failed',
+    DISCARDING: 'discarding',
+    DISCARDED: 'discarded'
   });
