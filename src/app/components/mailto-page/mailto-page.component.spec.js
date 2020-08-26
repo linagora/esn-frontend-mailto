@@ -70,7 +70,7 @@ describe('The mailtoPage component', function() {
       $timeout.flush();
 
       expect(element.find('.sending div')[0]).to.not.exist;
-      expect(element.find('.sent .icon-container').attr('ng-bind-html')).to.equal('$ctrl.mailSentIcon');
+      expect(element.find('.sent .icon-container svg title').text()).to.contain('Mail sent');
     });
 
     it('should react to mail status updated event when mail failed to be sent and change the status and content accordingly', function() {
@@ -85,7 +85,7 @@ describe('The mailtoPage component', function() {
       $timeout.flush();
 
       expect(element.find('.sending div')[0]).to.not.exist;
-      expect(element.find('.sent .icon-container').attr('ng-bind-html')).to.equal('$ctrl.mailFailedIcon');
+      expect(element.find('.sent .icon-container svg title').text()).to.contain('Failed to send mail');
     });
   });
 
@@ -95,7 +95,7 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.sent .icon-container').attr('ng-bind-html')).to.equal('$ctrl.mailSentIcon');
+      expect(element.find('.sent .icon-container svg title').text()).to.contain('Mail sent');
     });
 
     it('should reopen the composer when clicking on the \'Send another\' button after the mail failed to be sent', function() {
@@ -128,7 +128,7 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.sent .icon-container').attr('ng-bind-html')).to.equal('$ctrl.mailFailedIcon');
+      expect(element.find('.sent .icon-container svg title').text()).to.contain('Failed to send mail');
     });
 
     it('should reopen the composer when clicking on the \'Reopen composer\' button after the mail failed to be sent', function() {
