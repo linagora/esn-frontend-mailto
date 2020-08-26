@@ -11,6 +11,26 @@ html.full-height
       html.full-height, html.full-height body, html.full-height body > #wrap {
         height: 100%;
       }
+      .loading-spa-icon {
+        animation: bounce 2s;
+        animation-iteration-count: infinite;
+      }
 
+      @keyframes bounce {
+        0%,
+        25%,
+        50%,
+        75%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-12px);
+        }
+      }
   body(ng-app="linagora.esn.unifiedinbox.mailto" ng-controller="sessionInitESNController")
     #wrap(ng-include='session.template')
+      include ../node_modules/esn-frontend-inbox/src/app/app-loading.pug
