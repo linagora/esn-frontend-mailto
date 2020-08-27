@@ -237,8 +237,6 @@ module.exports = {
         '/contact/app',
         '/contact/images',
         '/dav/api',
-        '/unifiedinbox/views',
-        '/unifiedinbox/app',
         '/unifiedinbox/api',
         '/calendar/app',
         '/calendar/api',
