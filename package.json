@@ -14,7 +14,8 @@
   "author": "",
   "license": "AGPLv3",
   "dependencies": {
-    "esn-frontend-inbox": "github:openpaas-suite/esn-frontend-inbox#main"
+    "esn-frontend-inbox": "github:openpaas-suite/esn-frontend-inbox#main",
+    "esn-frontend-inbox-linshare": "github:openpaas-suite/esn-frontend-inbox-linshare#main"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
