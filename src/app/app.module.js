@@ -61,8 +61,8 @@ angular.module('linagora.esn.unifiedinbox.mailto', [
   'material.components.button',
   'material.components.backdrop',
   'material.components.menuBar',
-  'esn.inbox.libs'
-
+  'esn.inbox.libs',
+  'linagora.esn.unifiedinbox.linshare'
 ]);
 
 /*
@@ -106,6 +106,7 @@ require('esn-frontend-common-libs/src/frontend/js/modules/http');
 require('esn-frontend-common-libs/src/frontend/js/modules/promise/promise.module');
 require('esn-frontend-common-libs/src/frontend/js/modules/chips/chips.module');
 require('esn-frontend-common-libs/src/modules/linagora.esn.graceperiod/frontend/js/app.js');
+require('esn-frontend-inbox-linshare/src/app/app.module');
 
 require('./app.config');
 require('./app.constants');
