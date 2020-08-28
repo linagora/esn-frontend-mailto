@@ -1,8 +1,11 @@
 {
   "Close window": "Закрой окно",
   "Reopen composer": "Открыть еще раз компоновщик",
+  "Reopen draft": "Открыть черновик",
   "Send another": "Отправить еще",
   "Sorry, we could not send your message.": "К сожалению, мы не смогли отправить ваше сообщение.",
+  "The draft has already been discarded": "Проект уже уничтожен",
+  "Your draft has been discarded. The window will be closed in a few seconds...": "Ваш черновик отклонен. Окно закроется через несколько секунд...",
   "Your message has been sent successfully.": "Ваше сообщение было успешно отправлено.",
   "Your message is being sent": "Ваше сообщение отправляется"
 }

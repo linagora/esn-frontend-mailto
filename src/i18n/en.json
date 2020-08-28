@@ -1,8 +1,11 @@
 {
   "Close window": "Close window",
   "Reopen composer": "Reopen composer",
+  "Reopen draft": "Reopen draft",
   "Send another": "Send another",
   "Sorry, we could not send your message.": "Sorry, we could not send your message.",
+  "The draft has already been discarded": "The draft has already been discarded",
+  "Your draft has been discarded. The window will be closed in a few seconds...": "Your draft has been discarded. The window will be closed in a few seconds...",
   "Your message has been sent successfully.": "Your message has been sent successfully.",
   "Your message is being sent": "Your message is being sent"
 }

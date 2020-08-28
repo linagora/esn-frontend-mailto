@@ -16,7 +16,7 @@ angular
       return self.status;
     }
 
-    function updateStatus(newStatus) {
+    function updateStatus(newStatus, options) {
       if (!Object.values(MAILTO_MAIL_STATUSES).includes(newStatus)) {
         return $log.error(
           `Cannot update the mail status since the mail status '${newStatus}' is not allowed.`
@@ -24,6 +24,6 @@ angular
       }
 
       self.status = newStatus;
-      $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, self.status);
+      $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, self.status, options);
     }
   });

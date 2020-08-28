@@ -1,8 +1,11 @@
 {
   "Close window": "Đóng cửa sổ",
   "Reopen composer": "Mở lại trình soạn thư",
+  "Reopen draft": "Mở lại bản nháp",
   "Send another": "Gửi thư khác",
   "Sorry, we could not send your message.": "Xin lỗi, chúng tôi không gửi được thư của bạn.",
+  "The draft has already been discarded": "Bản nháp đã bị hủy",
+  "Your draft has been discarded. The window will be closed in a few seconds...": "Bản nháp đã được hủy. Cửa sổ sẽ đóng lại sau vài giây...",
   "Your message has been sent successfully.": "Thư đã được gửi thành công.",
   "Your message is being sent": "Thư đang được gửi"
 }

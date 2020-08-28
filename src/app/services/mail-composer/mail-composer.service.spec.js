@@ -5,7 +5,7 @@
 const expect = chai.expect;
 
 describe('The mailtoMailComposer service', function() {
-  let mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri;
+  let $window, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri;
 
   beforeEach(function() {
     newComposerServiceMock = {};
@@ -36,13 +36,64 @@ describe('The mailtoMailComposer service', function() {
       });
     });
 
-    angular.mock.inject(function(_mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
+    angular.mock.inject(function(_$window_, _mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
+      $window = _$window_;
       mailtoMailComposer = _mailtoMailComposer_;
       MAILTO_MAIL_STATUSES = _MAILTO_MAIL_STATUSES_;
     });
   });
 
   describe('The openComposer method', function() {
+    const testOnSending = (onSending) => {
+      onSending();
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENDING);
+    };
+
+    const testOnSend = (onSend) => {
+      onSend();
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENT);
+    };
+
+    const testOnFail = (onFail) => {
+      onFail();
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.FAILED);
+    };
+
+    const testOnDiscarding = (onDiscarding) => {
+      const reopenDraft = () => {};
+
+      onDiscarding(reopenDraft);
+
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });
+    };
+
+    const testOnDiscard = (onDiscard) => {
+      $window.close = sinon.stub();
+      mailtoMailStatusMock.getStatus = sinon.stub().returns(MAILTO_MAIL_STATUSES.INITIAL);
+
+      onDiscard();
+
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.DISCARDED);
+      expect($window.close).to.have.been.called;
+
+      $window.close = sinon.stub();
+      mailtoMailStatusMock.updateStatus = sinon.stub();
+      mailtoMailStatusMock.getStatus = sinon.stub().returns(MAILTO_MAIL_STATUSES.SENT);
+
+      onDiscard();
+
+      expect(mailtoMailStatusMock.updateStatus).to.have.not.been.called;
+      expect($window.close).to.have.not.been.called;
+    };
+
+    it('should reset the current mail status', function() {
+      newComposerServiceMock.open = () => {};
+
+      mailtoMailComposer.openComposer();
+
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.INITIAL);
+    });
+
     it('should call to inboxMailtoParser to get the message parsed from search params and open the composer with correct options', function() {
       newComposerServiceMock.open = sinon.spy(function(searchUri, options) {
         expect(searchUri).to.equal(fakeUri);
@@ -50,14 +101,11 @@ describe('The mailtoMailComposer service', function() {
         expect(options.allowedStates.length).to.equal(0);
         expect(options.initialState).to.equal(BoxOverlayStateManagerMock.STATES.FULL_SCREEN);
 
-        options.onSending();
-        expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENDING);
-
-        options.onSend();
-        expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENT);
-
-        options.onFail();
-        expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.FAILED);
+        testOnSending(options.onSending);
+        testOnSend(options.onSend);
+        testOnFail(options.onFail);
+        testOnDiscarding(options.onDiscarding);
+        testOnDiscard(options.onDiscard);
       });
 
       mailtoMailComposer.openComposer();

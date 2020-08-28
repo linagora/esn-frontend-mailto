@@ -29,6 +29,7 @@ module.exports = merge(commons, {
         test: /\.run.js$/,
         loader: 'ignore-loader',
         include: [
+          path.resolve(__dirname, 'node_modules/esn-frontend-common-libs/src/frontend/js/modules/i18n/i18n.run.js'),
           path.resolve(__dirname, 'node_modules/esn-frontend-inbox/src/esn.inbox.libs/app/services/jmap-client-provider/jmap-client-provider.run.js'),
           path.resolve(__dirname, 'src/app/app.run.js')
         ]
