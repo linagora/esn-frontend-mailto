@@ -46,6 +46,10 @@ In order to make it work with the webpack-dev-server launched by the `npm run se
 cd ./node_modules/esn-frontend-login && npm install && npm run build
 ```
 
+### Serve
+
+Go to http://localhost:9900/mailto/ to open the SPA
+
 ## Build
 
 Generates minified SPA in the `./dist` folder:
