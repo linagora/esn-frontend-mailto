@@ -48,6 +48,7 @@ angular.module('linagora.esn.unifiedinbox.mailto', [
   'esn.user-configuration',
   'esn.datetime',
   'esn.i18n',
+  'esn.login',
   'esn.http',
   'esn.promise',
   'esn.chips',
@@ -72,6 +73,7 @@ require('esn-frontend-common-libs/src/frontend/js/modules/textarea-autosize');
 require('esn-frontend-common-libs/src/frontend/js/modules/esn.waves');
 require('esn-frontend-common-libs/src/frontend/js/modules/esn.autolinker-wrapper');
 require('esn-frontend-common-libs/src/frontend/js/modules/ui');
+require('esn-frontend-common-libs/src/frontend/js/modules/login');
 require('esn-frontend-common-libs/src/frontend/js/modules/avatar');
 require('esn-frontend-common-libs/src/frontend/js/modules/media-query');
 require('esn-frontend-common-libs/src/frontend/js/modules/profile-popover-card/profile-popover-card.module');

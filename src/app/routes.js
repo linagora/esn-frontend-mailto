@@ -4,5 +4,10 @@ angular.module('linagora.esn.unifiedinbox.mailto')
       .state('main', {
         url: '*path',
         template: '<mailto-page></mailto-page>'
+      })
+
+      .state('logout', {
+        url: '/logout',
+        controller: 'logoutController'
       });
   });
