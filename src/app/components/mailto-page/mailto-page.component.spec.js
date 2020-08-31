@@ -23,10 +23,9 @@ describe('The mailtoPage component', function() {
       $provide.factory('openpaasLogoSpinner', () => ({}));
     });
 
-    angular.mock.inject(function(_$rootScope_, _$compile_, _$controller_, _$timeout_, _$window_, _$q_, _MAILTO_MAIL_STATUSES_, _MAILTO_MAIL_STATUS_EVENTS_) {
+    angular.mock.inject(function(_$rootScope_, _$compile_, _$timeout_, _$window_, _$q_, _MAILTO_MAIL_STATUSES_, _MAILTO_MAIL_STATUS_EVENTS_) {
       $rootScope = _$rootScope_;
       $compile = _$compile_;
-      $controller = _$controller_;
       $timeout = _$timeout_;
       $window = _$window_;
       MAILTO_MAIL_STATUSES = _MAILTO_MAIL_STATUSES_;
