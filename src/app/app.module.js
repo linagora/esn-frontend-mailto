@@ -118,4 +118,5 @@ require('./app.run');
 require('./services/mail-status/mail-status.service');
 require('./services/mail-status/mail-status.constants');
 require('./services/mail-composer/mail-composer.service');
+require('./services/close-window/close-window.service');
 require('./components/mailto-page/mailto-page.component');
