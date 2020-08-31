@@ -5,7 +5,7 @@
 const expect = chai.expect;
 
 describe('The mailtoMailComposer service', function() {
-  let $window, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri;
+  let $window, $location, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri;
 
   beforeEach(function() {
     newComposerServiceMock = {};
@@ -31,15 +31,15 @@ describe('The mailtoMailComposer service', function() {
       $provide.factory('BoxOverlayStateManager', function() { return BoxOverlayStateManagerMock; });
       $provide.value('newComposerService', newComposerServiceMock);
       $provide.value('mailtoMailStatus', mailtoMailStatusMock);
-      $provide.value('$location', {
-        search: () => ({ uri: fakeUri })
-      });
     });
 
-    angular.mock.inject(function(_$window_, _mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
+    angular.mock.inject(function(_$window_, _$location_, _mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
       $window = _$window_;
+      $location = _$location_;
       mailtoMailComposer = _mailtoMailComposer_;
       MAILTO_MAIL_STATUSES = _MAILTO_MAIL_STATUSES_;
+
+      $location.search = () => ({ uri: fakeUri });
     });
   });
 
