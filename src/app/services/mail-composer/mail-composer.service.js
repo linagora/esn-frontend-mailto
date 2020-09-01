@@ -31,8 +31,8 @@ angular
         onSend: function () {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.SENT);
         },
-        onFail: function () {
-          mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.FAILED);
+        onFail: function (reopenComposer) {
+          mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
         },
         onDiscarding: function (reopenDraft) {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });

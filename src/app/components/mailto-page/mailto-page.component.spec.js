@@ -42,13 +42,19 @@ describe('The mailtoPage component', function() {
     return element;
   }
 
+  const mailSendingContainerSelector = 'div[ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.TRANSITION"]';
+  const mailSentContainerSelector = 'div[ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENT"]';
+  const mailFailedContainerSelector = 'div[ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.FAILED"]';
+  const draftContainerSelector = 'div[ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDED"]';
+
   describe('When mail is being sent', function() {
+
     it('should show openpaas logo spinner when mail is being sent', function() {
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.SENDING;
 
       const element = initComponent();
 
-      expect(element.find('.sending div').attr('openpaas-logo-spinner')).to.exist;
+      expect(element.find(`${mailSendingContainerSelector} div`).attr('openpaas-logo-spinner')).to.exist;
     });
   
     it('should still show openpaas logo spinner when the animation transition is happening', function() {
@@ -56,7 +62,7 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.sending div').attr('openpaas-logo-spinner')).to.exist;
+      expect(element.find(`${mailSendingContainerSelector} div`).attr('openpaas-logo-spinner')).to.exist;
     });
 
     it('should react to mail status updated event when mail has been sent and change the status and content accordingly', function() {
@@ -66,12 +72,12 @@ describe('The mailtoPage component', function() {
 
       $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.SENT);
 
-      expect(element.find('.sending div').attr('openpaas-logo-spinner')).to.exist;
+      expect(element.find(`${mailSendingContainerSelector} div`).attr('openpaas-logo-spinner')).to.exist;
 
       $timeout.flush();
 
-      expect(element.find('.sending div')[0]).to.not.exist;
-      expect(element.find('.sent .icon-container svg title').text()).to.contain('Mail sent');
+      expect(element.find(`${mailSendingContainerSelector} div`)[0]).to.not.exist;
+      expect(element.find(`${mailSentContainerSelector} .icon-container svg title`).text()).to.contain('Mail sent');
     });
 
     it('should react to mail status updated event when mail failed to be sent and change the status and content accordingly', function() {
@@ -81,12 +87,12 @@ describe('The mailtoPage component', function() {
 
       $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.FAILED);
 
-      expect(element.find('.sending div').attr('openpaas-logo-spinner')).to.exist;
+      expect(element.find(`${mailSendingContainerSelector} div`).attr('openpaas-logo-spinner')).to.exist;
 
       $timeout.flush();
 
-      expect(element.find('.sending div')[0]).to.not.exist;
-      expect(element.find('.sent .icon-container svg title').text()).to.contain('Failed to send mail');
+      expect(element.find(`${mailSendingContainerSelector} div`)[0]).to.not.exist;
+      expect(element.find(`${mailFailedContainerSelector} .icon-container svg title`).text()).to.contain('Failed to send mail');
     });
   });
 
@@ -96,14 +102,14 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.sent .icon-container svg title').text()).to.contain('Mail sent');
+      expect(element.find(`${mailSentContainerSelector} .icon-container svg title`).text()).to.contain('Mail sent');
     });
 
     it('should reopen the composer when clicking on the \'Send another\' button after the mail failed to be sent', function() {
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.SENT;
 
       const element = initComponent();
-      const reopenComposerButton = element.find('.sent button.btn.btn-primary');
+      const reopenComposerButton = element.find(`${mailSentContainerSelector} button.btn.btn-primary`);
 
       reopenComposerButton.click();
 
@@ -115,7 +121,7 @@ describe('The mailtoPage component', function() {
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.SENT;
 
       const element = initComponent();
-      const closeWindowButton = element.find('.sent button.btn.btn-link');
+      const closeWindowButton = element.find(`${mailSentContainerSelector} button.btn.btn-link`);
 
       closeWindowButton.click();
 
@@ -129,18 +135,23 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.sent .icon-container svg title').text()).to.contain('Failed to send mail');
+      expect(element.find(`${mailFailedContainerSelector} .icon-container svg title`).text()).to.contain('Failed to send mail');
     });
 
     it('should reopen the composer when clicking on the \'Reopen composer\' button after the mail failed to be sent', function() {
-      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.FAILED;
+      const reopenComposer = sinon.stub();
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.SENDING;
 
       const element = initComponent();
-      const reopenComposerButton = element.find('.sent button.btn.btn-primary');
+
+      $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
+      $timeout.flush();
+
+      const reopenComposerButton = element.find(`${mailFailedContainerSelector} button.btn.btn-primary`);
 
       reopenComposerButton.click();
 
-      expect(mailtoMailComposerMock.openComposer).to.have.been.called;
+      expect(reopenComposer).to.have.been.called;
     });
 
     it('should close the window when clicking on the \'Close window\' button after the mail failed to be sent', function() {
@@ -148,7 +159,7 @@ describe('The mailtoPage component', function() {
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.FAILED;
 
       const element = initComponent();
-      const closeWindowButton = element.find('.sent button.btn.btn-link');
+      const closeWindowButton = element.find(`${mailFailedContainerSelector} button.btn.btn-link`);
 
       closeWindowButton.click();
 
@@ -162,7 +173,7 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.draft .icon-container svg title').text()).to.contain('Delete draft');
+      expect(element.find(`${draftContainerSelector} .icon-container svg title`).text()).to.contain('Delete draft');
     });
 
     it('should allow reopening the draft when clicking on the \'Reopen draft\' button', function() {
@@ -174,11 +185,11 @@ describe('The mailtoPage component', function() {
       $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });
       $rootScope.$digest();
 
-      const reopenDraftButton = element.find('.draft button.btn.btn-primary');
+      const reopenDraftButton = element.find(`${draftContainerSelector} button.btn.btn-primary`);
 
       reopenDraftButton.click();
 
-      expect(element.find('.draft button.btn.btn-primary').attr('title')).to.equal('');
+      expect(element.find(`${draftContainerSelector} button.btn.btn-primary`).attr('title')).to.equal('');
       expect(reopenDraft).to.have.been.called;
     });
 
@@ -187,7 +198,7 @@ describe('The mailtoPage component', function() {
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDING;
 
       const element = initComponent();
-      const closeWindowButton = element.find('.draft button.btn.btn-link');
+      const closeWindowButton = element.find(`${draftContainerSelector} button.btn.btn-link`);
 
       closeWindowButton.click();
 
@@ -201,7 +212,7 @@ describe('The mailtoPage component', function() {
 
       const element = initComponent();
 
-      expect(element.find('.draft .icon-container svg title').text()).to.contain('Delete draft');
+      expect(element.find(`${draftContainerSelector} .icon-container svg title`).text()).to.contain('Delete draft');
     });
 
     it('should disable the \'Reopen draft\' button and update its title', function() {
@@ -212,7 +223,7 @@ describe('The mailtoPage component', function() {
       $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.DISCARDED);
       $rootScope.$digest();
 
-      const reopenDraftButton = element.find('.draft button.btn.btn-primary');
+      const reopenDraftButton = element.find(`${draftContainerSelector} button.btn.btn-primary`);
 
       expect(reopenDraftButton.attr('title')).to.equal('The draft has already been discarded');
       expect(reopenDraftButton.attr('disabled')).to.exist;
@@ -223,7 +234,7 @@ describe('The mailtoPage component', function() {
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.DISCARDED;
 
       const element = initComponent();
-      const closeWindowButton = element.find('.draft button.btn.btn-link');
+      const closeWindowButton = element.find(`${draftContainerSelector} button.btn.btn-link`);
 
       closeWindowButton.click();
 

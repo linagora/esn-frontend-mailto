@@ -26,6 +26,10 @@ angular
       if (newStatus === self.MAILTO_MAIL_STATUSES.SENT || newStatus === self.MAILTO_MAIL_STATUSES.FAILED) {
         self.status = self.MAILTO_MAIL_STATUSES.TRANSITION;
 
+        if (newStatus === self.MAILTO_MAIL_STATUSES.FAILED && options && typeof options.reopenComposer === 'function') {
+          self.reopenComposer = options.reopenComposer;
+        }
+
         // This has to be 500ms to be in sync with the animation time defined in the LESS file.
         $timeout(() => {
           self.status = newStatus;

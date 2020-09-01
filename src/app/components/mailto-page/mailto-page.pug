@@ -1,4 +1,4 @@
-div.container.sending(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.TRANSITION")
+div.container(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.TRANSITION")
   div.text-center(openpaas-logo-spinner, spinner-start-active='1', spinner-size='1.5', ng-class="{ zoomOut: $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.TRANSITION }")
   p.status-message
     span {{ 'Your message is being sent' | translate }}
@@ -7,7 +7,7 @@ div.container.sending(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENDING
       span .
       span .
 
-div.container.sent(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENT")
+div.container(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENT")
   .icon-container.zoomIn
     include ../../../../assets/undraw_MailSent.svg
   p.status-message {{ 'Your message has been sent successfully.' | translate }}
@@ -15,15 +15,15 @@ div.container.sent(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.SENT")
     button.btn.btn-primary.waves-effect(ng-click="$ctrl.sendAnother()") {{ 'Send another' | translate }}
     button.btn.btn-link.waves-effect(ng-click="$ctrl.closeWindow()") {{ 'Close window' | translate }}
 
-div.container.sent(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.FAILED")
+div.container(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.FAILED")
   .icon-container.zoomIn
     include ../../../../assets/undraw_MailFailed.svg
   p.status-message {{ 'Sorry, we could not send your message.' | translate }}
   div.actions
-    button.btn.btn-primary.waves-effect(ng-click="$ctrl.sendAnother()") {{ 'Reopen composer' | translate }}
+    button.btn.btn-primary.waves-effect(ng-click="$ctrl.reopenComposer()") {{ 'Reopen composer' | translate }}
     button.btn.btn-link.waves-effect(ng-click="$ctrl.closeWindow()") {{ 'Close window' | translate }}
 
-div.container.draft(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDED")
+div.container(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDED")
   .icon-container.zoomIn
     include ../../../../assets/undraw_DeleteDraft.svg
   p.status-message {{ 'Your draft has been discarded. The window will be closed in a few seconds...' | translate }}
