@@ -52,6 +52,7 @@ angular.module('linagora.esn.unifiedinbox.mailto', [
   'esn.http',
   'esn.promise',
   'esn.chips',
+  'esn.material',
   'openpaas-logo',
 
   'ngAnimate',
@@ -106,6 +107,7 @@ require('esn-frontend-common-libs/src/frontend/js/modules/http');
 require('esn-frontend-common-libs/src/frontend/js/modules/promise/promise.module');
 require('esn-frontend-common-libs/src/frontend/js/modules/chips/chips.module');
 require('esn-frontend-common-libs/src/modules/linagora.esn.graceperiod/frontend/js/app.js');
+require('esn-frontend-common-libs/src/frontend/js/modules/material/material.module');
 require('esn-frontend-inbox-linshare/src/app/app.module');
 
 require('./app.config');
