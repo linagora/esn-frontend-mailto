@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-const expect = chai.expect;
+const { expect } = chai;
 
 describe('The mailtoPage component', function() {
   let $rootScope, $compile, $window, $timeout, mailtoMailStatusMock, mailtoMailComposerMock, MAILTO_MAIL_STATUSES, MAILTO_MAIL_STATUS_EVENTS;
@@ -56,7 +56,7 @@ describe('The mailtoPage component', function() {
 
       expect(element.find(`${mailSendingContainerSelector} div`).attr('openpaas-logo-spinner')).to.exist;
     });
-  
+
     it('should still show openpaas logo spinner when the animation transition is happening', function() {
       mailtoMailStatusMock.getStatus = () => 'transition';
 
@@ -140,6 +140,7 @@ describe('The mailtoPage component', function() {
 
     it('should reopen the composer when clicking on the \'Reopen composer\' button after the mail failed to be sent', function() {
       const reopenComposer = sinon.stub();
+
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.SENDING;
 
       const element = initComponent();
@@ -178,6 +179,7 @@ describe('The mailtoPage component', function() {
 
     it('should allow reopening the draft when clicking on the \'Reopen draft\' button', function() {
       const reopenDraft = sinon.stub();
+
       mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.INITIAL;
 
       const element = initComponent();

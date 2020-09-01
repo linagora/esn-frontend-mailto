@@ -13,7 +13,7 @@ angular
     MAILTO_MAIL_STATUSES
   ) {
     return {
-      openComposer,
+      openComposer
     };
 
     function openComposer() {
@@ -25,19 +25,19 @@ angular
         closeable: false,
         allowedStates: [],
         initialState: BoxOverlayStateManager.STATES.FULL_SCREEN,
-        onSending: function () {
+        onSending: function() {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.SENDING);
         },
-        onSend: function () {
+        onSend: function() {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.SENT);
         },
-        onFail: function (reopenComposer) {
+        onFail: function(reopenComposer) {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
         },
-        onDiscarding: function (reopenDraft) {
+        onDiscarding: function(reopenDraft) {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });
         },
-        onDiscard: function () {
+        onDiscard: function() {
           // When the email has been successfully sent, the draft will be discarded, but we don't want
           // to change the mail status from 'sent' to 'discarded' here.
           if (mailtoMailStatus.getStatus() === MAILTO_MAIL_STATUSES.SENT) return;

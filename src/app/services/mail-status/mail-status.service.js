@@ -9,7 +9,7 @@ angular
 
     return {
       getStatus,
-      updateStatus,
+      updateStatus
     };
 
     function getStatus() {

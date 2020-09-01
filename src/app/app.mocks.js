@@ -1,6 +1,6 @@
 'use strict';
 
-const noop = angular.noop;
+const { noop } = angular;
 
 angular.module('ng.deviceDetector', [])
   .factory('deviceDetector', function() {
@@ -20,4 +20,4 @@ angular.module('esn.header', [])
   .service('subHeaderService', noop)
   .constant('ESN_SUBHEADER_HEIGHT_MD', 0);
 
-angular.module('linagora.esn.unifiedinbox', [])
+angular.module('linagora.esn.unifiedinbox', []);

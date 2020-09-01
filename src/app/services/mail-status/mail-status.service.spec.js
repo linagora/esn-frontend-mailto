@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-const expect = chai.expect;
+const { expect } = chai;
 
 describe('The mailtoMailStatus service', function() {
   let $rootScope, $log, mailtoMailStatus, MAILTO_MAIL_STATUSES, MAILTO_MAIL_STATUS_EVENTS;
@@ -19,7 +19,7 @@ describe('The mailtoMailStatus service', function() {
 
       $rootScope.$broadcast = sinon.stub();
       $log.error = sinon.stub();
-    })
+    });
   });
 
   describe('The initial status', function() {
