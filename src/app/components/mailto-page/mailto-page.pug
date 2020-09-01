@@ -20,7 +20,7 @@ div.container(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.FAILED")
     include ../../../../assets/undraw_MailFailed.svg
   p.status-message {{ 'Sorry, we could not send your message.' | translate }}
   div.actions
-    button.btn.btn-primary.waves-effect(ng-click="$ctrl.sendAnother()") {{ 'Reopen composer' | translate }}
+    button.btn.btn-primary.waves-effect(ng-click="$ctrl.reopenComposer()") {{ 'Reopen composer' | translate }}
     button.btn.btn-link.waves-effect(ng-click="$ctrl.closeWindow()") {{ 'Close window' | translate }}
 
 div.container(ng-if="$ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDING || $ctrl.status === $ctrl.MAILTO_MAIL_STATUSES.DISCARDED")

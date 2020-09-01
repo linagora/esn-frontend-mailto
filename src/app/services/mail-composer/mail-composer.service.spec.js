@@ -55,8 +55,11 @@ describe('The mailtoMailComposer service', function() {
     };
 
     const testOnFail = (onFail) => {
-      onFail();
-      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.FAILED);
+      const reopenComposer = () => {};
+
+      onFail(reopenComposer);
+
+      expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
     };
 
     const testOnDiscarding = (onDiscarding) => {

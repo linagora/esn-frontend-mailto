@@ -139,14 +139,19 @@ describe('The mailtoPage component', function() {
     });
 
     it('should reopen the composer when clicking on the \'Reopen composer\' button after the mail failed to be sent', function() {
-      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.FAILED;
+      const reopenComposer = sinon.stub();
+      mailtoMailStatusMock.getStatus = () => MAILTO_MAIL_STATUSES.SENDING;
 
       const element = initComponent();
+
+      $rootScope.$broadcast(MAILTO_MAIL_STATUS_EVENTS.UPDATED, MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
+      $timeout.flush();
+
       const reopenComposerButton = element.find(`${mailFailedContainerSelector} button.btn.btn-primary`);
 
       reopenComposerButton.click();
 
-      expect(mailtoMailComposerMock.openComposer).to.have.been.called;
+      expect(reopenComposer).to.have.been.called;
     });
 
     it('should close the window when clicking on the \'Close window\' button after the mail failed to be sent', function() {
