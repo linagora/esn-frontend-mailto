@@ -2,7 +2,7 @@
 
 /* global chai, sinon: false */
 
-const expect = chai.expect;
+const { expect } = chai;
 
 describe('The mailtoMailComposer service', function() {
   let $window, $location, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri;
@@ -16,7 +16,7 @@ describe('The mailtoMailComposer service', function() {
       STATES: {
         FULL_SCREEN: 'fullscreen'
       }
-    }
+    };
 
     mailtoMailStatusMock = {
       updateStatus: sinon.stub()
@@ -25,7 +25,7 @@ describe('The mailtoMailComposer service', function() {
     fakeUri = 'fakeUri';
 
     angular.mock.module('linagora.esn.unifiedinbox.mailto');
-    
+
     angular.mock.module(function($provide) {
       $provide.factory('inboxMailtoParser', function() { return inboxMailtoParserMock; });
       $provide.factory('BoxOverlayStateManager', function() { return BoxOverlayStateManagerMock; });
@@ -44,17 +44,17 @@ describe('The mailtoMailComposer service', function() {
   });
 
   describe('The openComposer method', function() {
-    const testOnSending = (onSending) => {
+    const testOnSending = onSending => {
       onSending();
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENDING);
     };
 
-    const testOnSend = (onSend) => {
+    const testOnSend = onSend => {
       onSend();
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENT);
     };
 
-    const testOnFail = (onFail) => {
+    const testOnFail = onFail => {
       const reopenComposer = () => {};
 
       onFail(reopenComposer);
@@ -62,7 +62,7 @@ describe('The mailtoMailComposer service', function() {
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
     };
 
-    const testOnDiscarding = (onDiscarding) => {
+    const testOnDiscarding = onDiscarding => {
       const reopenDraft = () => {};
 
       onDiscarding(reopenDraft);
@@ -70,7 +70,7 @@ describe('The mailtoMailComposer service', function() {
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });
     };
 
-    const testOnDiscard = (onDiscard) => {
+    const testOnDiscard = onDiscard => {
       $window.close = sinon.stub();
       mailtoMailStatusMock.getStatus = sinon.stub().returns(MAILTO_MAIL_STATUSES.INITIAL);
 

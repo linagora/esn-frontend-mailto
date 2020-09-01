@@ -1,0 +1,12 @@
+{
+  "extends": "linagora-esn",
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "consistent-this": ["warn", "self"],
+    "no-process-env": "off",
+    "object-curly-spacing": ["error", "always"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  }
+}

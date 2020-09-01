@@ -19,7 +19,7 @@ angular
     self.status = mailtoMailStatus.getStatus();
     self.MAILTO_MAIL_STATUSES = {
       ...MAILTO_MAIL_STATUSES,
-      TRANSITION: 'transition',
+      TRANSITION: 'transition'
     };
 
     $scope.$on(MAILTO_MAIL_STATUS_EVENTS.UPDATED, (event, newStatus, options) => {
