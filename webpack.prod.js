@@ -20,7 +20,8 @@ module.exports = merge(commons, {
         include: [
           path.resolve(__dirname, 'src'),
           path.resolve(__dirname, 'node_modules/esn-frontend-common-libs'),
-          path.resolve(__dirname, 'node_modules/esn-frontend-inbox')
+          path.resolve(__dirname, 'node_modules/esn-frontend-inbox'),
+          path.resolve(__dirname, 'node_modules/esn-frontend-linshare')
         ],
         exclude: [
           path.resolve(__dirname, 'node_modules/esn-frontend-common-libs/src/frontend/components')
