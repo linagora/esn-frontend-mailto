@@ -5,9 +5,14 @@
 const { expect } = chai;
 
 describe('The mailtoMailComposer service', function() {
-  let $window, $location, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri;
+  let $window, $location, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri, notificationFactoryMock;
 
   beforeEach(function() {
+    notificationFactoryMock = {
+      weakSuccess: sinon.stub(),
+      weakError: sinon.stub()
+    };
+
     newComposerServiceMock = {};
 
     inboxMailtoParserMock = sinon.stub().returnsArg(0);
@@ -31,6 +36,7 @@ describe('The mailtoMailComposer service', function() {
       $provide.factory('BoxOverlayStateManager', function() { return BoxOverlayStateManagerMock; });
       $provide.value('newComposerService', newComposerServiceMock);
       $provide.value('mailtoMailStatus', mailtoMailStatusMock);
+      $provide.value('notificationFactory', notificationFactoryMock);
     });
 
     angular.mock.inject(function(_$window_, _$location_, _mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
@@ -49,9 +55,10 @@ describe('The mailtoMailComposer service', function() {
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENDING);
     };
 
-    const testOnSend = onSend => {
+    const testOnSend = (onSend, composerbox) => {
       onSend();
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.SENT);
+      expect(composerbox.destroy).to.have.been.called;
     };
 
     const testOnFail = onFail => {
@@ -68,6 +75,18 @@ describe('The mailtoMailComposer service', function() {
       onDiscarding(reopenDraft);
 
       expect(mailtoMailStatusMock.updateStatus).to.have.been.calledWith(MAILTO_MAIL_STATUSES.DISCARDING, { reopenDraft });
+    };
+
+    const testOnSave = onSave => {
+      onSave();
+
+      expect(notificationFactoryMock.weakSuccess).to.have.been.calledWith('Success', 'Your email has been saved');
+    };
+
+    const testOnSaveFailure = onSaveFailure => {
+      onSaveFailure();
+
+      expect(notificationFactoryMock.weakError).to.have.been.calledWith('Error', 'Can not save email');
     };
 
     const testOnDiscard = onDiscard => {
@@ -98,22 +117,30 @@ describe('The mailtoMailComposer service', function() {
     });
 
     it('should call to inboxMailtoParser to get the message parsed from search params and open the composer with correct options', function() {
-      newComposerServiceMock.open = sinon.spy(function(searchUri, options) {
-        expect(searchUri).to.equal(fakeUri);
-        expect(options.closeable).to.be.false;
-        expect(options.allowedStates.length).to.equal(0);
-        expect(options.initialState).to.equal(BoxOverlayStateManagerMock.STATES.FULL_SCREEN);
+      const composerbox = {
+        destroy: sinon.stub()
+      };
 
-        testOnSending(options.onSending);
-        testOnSend(options.onSend);
-        testOnFail(options.onFail);
-        testOnDiscarding(options.onDiscarding);
-        testOnDiscard(options.onDiscard);
-      });
+      newComposerServiceMock.open = sinon.stub().returns(composerbox);
 
       mailtoMailComposer.openComposer();
 
       expect(inboxMailtoParserMock).to.have.been.calledWith(fakeUri);
+      expect(newComposerServiceMock.open).to.have.been.calledWith(fakeUri);
+
+      const options = newComposerServiceMock.open.lastCall.lastArg;
+
+      expect(options.closeable).to.be.false;
+      expect(options.allowedStates.length).to.equal(0);
+      expect(options.initialState).to.equal(BoxOverlayStateManagerMock.STATES.FULL_SCREEN);
+
+      testOnSending(options.onSending);
+      testOnSend(options.onSend, composerbox);
+      testOnFail(options.onFail);
+      testOnDiscarding(options.onDiscarding);
+      testOnDiscard(options.onDiscard);
+      testOnSaveFailure(options.onSaveFailure);
+      testOnSave(options.onSave);
     });
   });
 });

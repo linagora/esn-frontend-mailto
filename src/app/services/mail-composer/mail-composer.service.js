@@ -10,6 +10,7 @@ angular
     newComposerService,
     inboxMailtoParser,
     mailtoMailStatus,
+    notificationFactory,
     MAILTO_MAIL_STATUSES
   ) {
     return {
@@ -19,17 +20,19 @@ angular
     function openComposer() {
       mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.INITIAL);
 
-      const messageFromSearchParams = inboxMailtoParser($location.search().uri);
+      const email = inboxMailtoParser($location.search().uri);
 
-      newComposerService.open(messageFromSearchParams, {
+      const composerBox = newComposerService.open(email, {
         closeable: false,
         allowedStates: [],
+        displaySaveButton: true,
         initialState: BoxOverlayStateManager.STATES.FULL_SCREEN,
         onSending: function() {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.SENDING);
         },
         onSend: function() {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.SENT);
+          composerBox && composerBox.destroy();
         },
         onFail: function(reopenComposer) {
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.FAILED, { reopenComposer });
@@ -45,6 +48,12 @@ angular
           mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.DISCARDED);
 
           $window.close();
+        },
+        onSave: function() {
+          notificationFactory.weakSuccess('Success', 'Your email has been saved');
+        },
+        onSaveFailure: function() {
+          notificationFactory.weakError('Error', 'Can not save email');
         }
       });
     }
