@@ -1,5 +1,8 @@
 angular.module('linagora.esn.unifiedinbox.mailto')
-  .config(registerI18N);
+  .config(registerI18N)
+  .config(function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  });
 
 function registerI18N($translateProvider) {
   $translateProvider.translations('en', require('../i18n/en.json'));
