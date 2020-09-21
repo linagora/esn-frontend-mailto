@@ -11,7 +11,6 @@ require('./app/app.mocks.js');
 // then require everything we need...
 require('esn-frontend-inbox/src/esn.inbox.libs/app/app.module.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/directives/main.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/new-composer/new-composer.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailto-parser/mailto-parser.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/user-quota/user-quota-service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/user-quota/user-quota-service.constants.js');
@@ -38,8 +37,6 @@ require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/compose
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/composer/identity-selector/composer-identity-selector.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/composer/identity-selector/composer-identity-selector.controller.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/composer/attachments-selector/composer-attachments-selector.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/inbox-configuration/read-receipt/read-receipt.component.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/inbox-configuration/read-receipt/read-receipt.controller.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/vacation-banner/vacation-banner.component.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/vacation-banner/vacation-banner.controller.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/quota-banner/quota-banner.component.js');
