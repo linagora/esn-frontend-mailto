@@ -40,6 +40,7 @@
     "esn-frontend-login": "github:openpaas-suite/esn-frontend-login#main",
     "exports-loader": "^1.0.0",
     "expose-loader": "^1.0.0",
+    "favicons-webpack-plugin": "^4.2.0",
     "file-loader": "^6.0.0",
     "glob-all": "^3.2.1",
     "html-loader": "^1.1.0",
