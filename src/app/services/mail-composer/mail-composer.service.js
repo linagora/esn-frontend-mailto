@@ -1,5 +1,6 @@
 require('../mail-status/mail-status.constants');
 require('../mail-status/mail-status.service');
+require('../parser/parser');
 
 angular
   .module('linagora.esn.unifiedinbox.mailto')
