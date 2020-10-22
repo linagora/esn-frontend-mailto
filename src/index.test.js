@@ -12,7 +12,6 @@ require('angular-mocks/angular-mocks.js');
 require('./app/app.mocks.js');
 require('esn-frontend-inbox/src/esn.inbox.libs/app/app.module.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/directives/main.js');
-require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/mailto-parser/mailto-parser.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/user-quota/user-quota-service.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/user-quota/user-quota-service.constants.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/services/attachment-upload/inbox-attachment-upload.service.js');
