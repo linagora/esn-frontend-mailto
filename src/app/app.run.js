@@ -6,6 +6,7 @@ angular
     $templateCache.put('/views/commons/loading.html', require('esn-frontend-inbox/src/app/app-loading.pug'));
     $templateCache.put('/unifiedinbox/app/components/composer/composer-desktop.html', require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/composer/composer-desktop.pug'));
     $templateCache.put('/unifiedinbox/app/components/composer/composer-mobile.html', require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/composer/composer-mobile.pug'));
+    $templateCache.put('/unifiedinbox/views/composer/recipients-autocomplete-input-tag.html', require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/views/composer/recipients-autocomplete-input-tag.pug'));
   })
   .run(function(sessionFactory, mailtoMailComposer) {
     sessionFactory.bootstrapSession().then(() => {
