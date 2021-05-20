@@ -35,6 +35,7 @@ module.exports = {
     new Dotenv({ systemvars: true }),
     new webpack.IgnorePlugin({ resourceRegExp: /codemirror/ }), // for summernote
     new webpack.IgnorePlugin({ resourceRegExp: /^\.\/locale$/, contextRegExp: /moment$/ }),
+    new webpack.IgnorePlugin({ resourceRegExp: /openpaas\.js$/, contextRegExp: /env$/ }),
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
       $: 'jquery',
@@ -67,6 +68,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'node_modules', 'socket.io-client', 'dist', 'socket.io.js'),
           to: 'socket.io/socket.io.js'
+        },
+        {
+          from: path.resolve(__dirname, 'env', 'openpaas.js'),
+          to: 'env'
         }
       ]
     })
