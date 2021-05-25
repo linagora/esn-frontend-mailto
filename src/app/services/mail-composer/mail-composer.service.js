@@ -20,9 +20,7 @@ angular
 
     function openComposer() {
       mailtoMailStatus.updateStatus(MAILTO_MAIL_STATUSES.INITIAL);
-
-      const email = inboxMailtoParser($location.search().uri);
-
+      const email = inboxMailtoParser($location.search());
       const composerBox = newComposerService.open(email, {
         closeable: false,
         allowedStates: [],

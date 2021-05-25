@@ -5,7 +5,7 @@
 const { expect } = chai;
 
 describe('The mailtoMailComposer service', function() {
-  let $window, $location, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, fakeUri, notificationFactoryMock;
+  let $window, $location, mailtoMailComposer, inboxMailtoParserMock, BoxOverlayStateManagerMock, newComposerServiceMock, mailtoMailStatusMock, MAILTO_MAIL_STATUSES, notificationFactoryMock;
 
   beforeEach(function() {
     notificationFactoryMock = {
@@ -27,8 +27,7 @@ describe('The mailtoMailComposer service', function() {
       updateStatus: sinon.stub()
     };
 
-    fakeUri = 'fakeUri';
-
+    $location = { url: sinon.spy(), search: sinon.spy() };
     angular.mock.module('linagora.esn.unifiedinbox.mailto');
 
     angular.mock.module(function($provide) {
@@ -37,15 +36,14 @@ describe('The mailtoMailComposer service', function() {
       $provide.value('newComposerService', newComposerServiceMock);
       $provide.value('mailtoMailStatus', mailtoMailStatusMock);
       $provide.value('notificationFactory', notificationFactoryMock);
+      $provide.value('$location', $location);
     });
 
-    angular.mock.inject(function(_$window_, _$location_, _mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
+    angular.mock.inject(function(_$window_, _mailtoMailComposer_, _MAILTO_MAIL_STATUSES_) {
       $window = _$window_;
-      $location = _$location_;
       mailtoMailComposer = _mailtoMailComposer_;
       MAILTO_MAIL_STATUSES = _MAILTO_MAIL_STATUSES_;
 
-      $location.search = () => ({ uri: fakeUri });
     });
   });
 
@@ -125,8 +123,8 @@ describe('The mailtoMailComposer service', function() {
 
       mailtoMailComposer.openComposer();
 
-      expect(inboxMailtoParserMock).to.have.been.calledWith(fakeUri);
-      expect(newComposerServiceMock.open).to.have.been.calledWith(fakeUri);
+      expect(inboxMailtoParserMock).to.have.been.calledWith($location.search());
+      expect(newComposerServiceMock.open).to.have.been.calledWith($location.search());
 
       const options = newComposerServiceMock.open.lastCall.lastArg;
 
