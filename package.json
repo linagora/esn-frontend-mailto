@@ -15,8 +15,8 @@
   "author": "",
   "license": "AGPLv3",
   "dependencies": {
-    "esn-frontend-inbox": "github:openpaas-suite/esn-frontend-inbox#main",
-    "esn-frontend-inbox-linshare": "github:openpaas-suite/esn-frontend-inbox-linshare#main"
+    "esn-frontend-inbox": "github:linagora/esn-frontend-inbox#main",
+    "esn-frontend-inbox-linshare": "github:linagora/esn-frontend-inbox-linshare#main"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -38,7 +38,7 @@
     "eslint": "^7.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "2.22.0",
-    "esn-frontend-login": "github:openpaas-suite/esn-frontend-login#main",
+    "esn-frontend-login": "github:linagora/esn-frontend-login#main",
     "exports-loader": "^1.0.0",
     "expose-loader": "^1.0.0",
     "favicons-webpack-plugin": "^4.2.0",
