@@ -19,18 +19,24 @@ describe('The mailtoPage component', function() {
       $provide.value('mailtoMailStatus', mailtoMailStatusMock);
       $provide.value('mailtoMailComposer', mailtoMailComposerMock);
       $provide.value('translateFilter', text => text);
-      $provide.value('esnI18nService', { translate: text => ({ toString: () => text }) });
+      $provide.value('esnI18nService', {
+        translate: text => ({ toString: () => text }),
+        getLocale: () => 'en'
+      });
       $provide.factory('openpaasLogoSpinner', () => ({}));
     });
 
-    angular.mock.inject(function(_$rootScope_, _$compile_, _$timeout_, _$window_, _$q_, _MAILTO_MAIL_STATUSES_, _MAILTO_MAIL_STATUS_EVENTS_) {
+    angular.mock.inject(function($httpBackend, _$rootScope_, _$compile_, _$timeout_, _$window_, _$q_, _MAILTO_MAIL_STATUSES_, _MAILTO_MAIL_STATUS_EVENTS_) {
       $rootScope = _$rootScope_;
       $compile = _$compile_;
       $timeout = _$timeout_;
       $window = _$window_;
+      this.$httpBackend = $httpBackend;
       MAILTO_MAIL_STATUSES = _MAILTO_MAIL_STATUSES_;
       MAILTO_MAIL_STATUS_EVENTS = _MAILTO_MAIL_STATUS_EVENTS_;
     });
+
+    this.$httpBackend.expectPOST('/api/jwt/generate').respond(201, '123456');
   });
 
   function initComponent() {
