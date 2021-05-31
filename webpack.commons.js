@@ -72,6 +72,14 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'env', 'openpaas.js'),
           to: 'env'
+        },
+        {
+          from: path.resolve(__dirname, 'node_modules', 'openpaas-auth-client', 'src', 'assets'),
+          to: 'auth'
+        },
+        {
+          from: path.resolve(__dirname, 'node_modules', 'oidc-client', 'dist', 'oidc-client.min.js'),
+          to: 'auth'
         }
       ]
     })
@@ -244,6 +252,8 @@ module.exports = {
     contentBasePublicPath: [BASE_HREF, '/login'],
     publicPath: '/mailto/',
     compress: true,
+    host: '0.0.0.0',
+    disableHostCheck: true,
     port: 9900,
     proxy: [{
       context: [
