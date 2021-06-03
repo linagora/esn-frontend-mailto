@@ -254,6 +254,7 @@ module.exports = {
     compress: true,
     host: '0.0.0.0',
     disableHostCheck: true,
+    historyApiFallback: true,
     port: 9900,
     proxy: [{
       context: [
