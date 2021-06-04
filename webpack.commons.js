@@ -16,7 +16,6 @@ const pugLoaderOptions = {
 };
 
 const BASE_HREF = process.env.BASE_HREF || '/';
-const OPENPAAS_URL = process.env.OPENPAAS_URL || 'http://localhost:8080';
 
 module.exports = {
   entry: './src/index.js',
@@ -255,33 +254,6 @@ module.exports = {
     host: '0.0.0.0',
     disableHostCheck: true,
     historyApiFallback: true,
-    port: 9900,
-    proxy: [{
-      context: [
-        '/auth',
-        '/api',
-        '/logout',
-        '/views',
-        '/account/api',
-        '/profile/app',
-        '/controlcenter/app',
-        '/images',
-        '/socket.io/',
-        '/user-status/app/bubble/',
-        '/user-status/api',
-        '/contact/app',
-        '/contact/images',
-        '/dav/api',
-        '/unifiedinbox/api',
-        '/calendar/app',
-        '/calendar/api',
-        '/linagora.esn.resource/api'
-      ],
-      target: OPENPAAS_URL,
-      disableHostCheck: true,
-      secure: false,
-      changeOrigin: true,
-      withCredentials: true
-    }]
+    port: 9900
   }
 };
