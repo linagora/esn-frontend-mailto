@@ -6,7 +6,7 @@ html.full-height
     title OpenPaas - Mailto
     meta(name="viewport", content="width=device-width, initial-scale=1")
     meta(name="theme-color", content="#0C7CD5")
-    script(src=base + "socket.io/socket.io.js")
+    script(src=base + "assets/socket.io/socket.io.js")
     style(type='text/css').
       html.full-height, html.full-height body, html.full-height body > #wrap {
         height: 100%;
@@ -34,4 +34,4 @@ html.full-height
   body(ng-app="linagora.esn.unifiedinbox.mailto" ng-controller="sessionInitESNController")
     #wrap(ng-include='session.template')
       include ../node_modules/esn-frontend-inbox/src/app/app-loading.pug
-    script(src=base + "env/openpaas.js")
+    script(src=base + "assets/env/openpaas.js")
