@@ -26,7 +26,7 @@ pipeline {
       }
       steps {
         script {
-          def dockerImage = docker.build 'linagora/esn-frontend-mailto'
+          def dockerImage = docker.build('linagora/esn-frontend-mailto', '--pull --no-cache .')
           docker.withRegistry('', 'dockerHub') {
             dockerImage.push('main')
           }
@@ -50,7 +50,7 @@ pipeline {
       }
       steps {
         script {
-          def dockerImage = docker.build 'linagora/esn-frontend-mailto'
+          def dockerImage = docker.build('linagora/esn-frontend-mailto', '--pull --no-cache .')
           docker.withRegistry('', 'dockerHub') {
             dockerImage.push(env.TAG_NAME)
           }
