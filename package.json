@@ -15,6 +15,7 @@
   "author": "",
   "license": "AGPLv3",
   "dependencies": {
+    "esn-frontend-common-libs": "github:linagora/esn-frontend-common-libs#main",
     "esn-frontend-inbox": "github:linagora/esn-frontend-inbox#main",
     "esn-frontend-inbox-linshare": "github:linagora/esn-frontend-inbox-linshare#main"
   },
