@@ -17,6 +17,7 @@ const pugLoaderOptions = {
 
 const BASE_HREF = process.env.BASE_HREF || '/mailto/';
 const assetsFolder = 'assets/';
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -79,6 +80,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'node_modules', 'oidc-client', 'dist', 'oidc-client.min.js'),
           to: 'auth'
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'images', 'file-icons'),
+          to: 'images/file-icons'
         }
       ]
     })
