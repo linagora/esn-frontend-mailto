@@ -84,6 +84,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src', 'images', 'file-icons'),
           to: 'images/file-icons'
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'images', 'exclamation.svg'),
+          to: 'images'
         }
       ]
     })
