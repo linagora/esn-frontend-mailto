@@ -88,6 +88,10 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src', 'images', 'exclamation.svg'),
           to: 'images'
+        },
+        {
+          from: path.resolve(__dirname, 'src', 'images', 'upload.svg'),
+          to: 'images'
         }
       ]
     })
