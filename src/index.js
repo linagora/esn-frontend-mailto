@@ -40,7 +40,5 @@ require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/vacation-banner/vacation-banner.controller.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/quota-banner/quota-banner.component.js');
 require('esn-frontend-inbox/src/linagora.esn.unifiedinbox/app/components/banner/quota-banner/quota-banner.controller.js');
-require('esn-frontend-mailto-handler/src/index.js');
-
 require('./app/app.module.js');
 require('./app/all.less');
